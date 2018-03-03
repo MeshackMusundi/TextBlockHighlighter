@@ -1,4 +1,4 @@
-# WPF TextBlock Highlighter
+# TextBlock Highlighter
 
 ![Highlighter screenshot](https://www.codeproject.com/KB/WPF/1229482/TextBlockHighlighter.Gif)
 
