@@ -1,0 +1,38 @@
+﻿<Window x:Class="TextBlockHighlighterCS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TextBlockHighlighterCS"
+        mc:Ignorable="d"
+        Title="Highlighter" Height="320" Width="250"
+        ResizeMode="NoResize" Background="#FF2E2A2A"
+        FocusManager.FocusedElement="{Binding ElementName=SearchTxtBox}">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <ItemsControl Margin="10,10,10,0" Background="White"
+                      ItemsSource="{Binding Movies}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="10,2" FontWeight="Bold"
+                               Text="{Binding}" 
+                               local:TextBlockHighlighter.Selection="{Binding DataContext.Filter,
+                        Mode=OneWay, RelativeSource={RelativeSource AncestorType=Window}}"
+                               local:TextBlockHighlighter.HighlightColor="LightGreen"
+                               local:TextBlockHighlighter.Forecolor="Teal"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBox x:Name="SearchTxtBox" Grid.Row="1" Margin="10,0" VerticalAlignment="Center" 
+                 Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</Window>
